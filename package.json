@@ -4,7 +4,9 @@
   "description": "An Angular schematic for adding prettier",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "npm run build && jasmine src/**/*_spec.js"
+    "test": "npm run build && jasmine src/**/*_spec.js",
+    "test:app": "cd sandbox && run-s lint test e2e build",
+    "clean": "git checkout HEAD -- sandbox && git clean -f -d sandbox"
   },
   "keywords": [
     "prettier",
@@ -21,5 +23,8 @@
     "@types/node": "^8.0.31",
     "jasmine": "^2.8.0",
     "typescript": "^2.5.2"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.3"
   }
 }
