@@ -7,7 +7,6 @@
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-
 ## Contributing
 
 ### Getting started
@@ -16,6 +15,12 @@ Install dependencies:
 
 ```shell
 yarn && cd sandbox && yarn
+```
+
+Link schematic to sandbox app. Schematic commands in the sandbox will use this local repo schematic.
+
+```shell
+yarn link && yarn link:sandbox
 ```
 
 ### Committing ✅
