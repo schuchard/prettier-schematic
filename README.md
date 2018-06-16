@@ -29,3 +29,7 @@ yarn cm
 ### Publishing 🎉
 
 Publishes are managed in CircleCI on merges into master. See the commit message [docs](https://github.com/semantic-release/semantic-release#commit-message-format) on how to trigger a new NPM publish and version.
+
+## Documentation
+
+Unsure how to do something with schematics? Check the Angular [schematics](https://github.com/angular/angular-cli/tree/master/packages/schematics/angular) for inspiration.
