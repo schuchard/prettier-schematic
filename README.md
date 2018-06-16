@@ -1,31 +1,30 @@
 # Angular Prettier schematic
 
+🚀 This repository is a Angular CLI schematic that adds Prettier to an Angular project.
+
 [![CircleCI](https://circleci.com/gh/schuchard/prettier-schematic.svg?style=svg)](https://circleci.com/gh/schuchard/prettier-schematic)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-## Getting Started With Schematics
 
-This repository is a basic Schematic implementation that serves as a starting point to create and publish Schematics to NPM.
+## Contributing
 
-### Testing
+### Getting started
 
-To test locally, install `@angular-devkit/schematics` globally and use the `schematics` command line tool. That tool acts the same as the `generate` command of the Angular CLI, but also has a debug mode.
+Install dependencies:
 
-Check the documentation with
-```bash
-schematics --help
+```shell
+yarn && cd sandbox && yarn
 ```
 
-### Unit Testing
+### Committing ✅
 
-`npm run test` will run the unit tests, using Jasmine as a runner and test framework.
+This repo uses semantic-release and relies on [formatted](https://github.com/semantic-release/semantic-release#commit-message-format) commit messages for determining the next version. After staging changes, build the commit message with commitizen:
 
-### Publishing
-
-To publish, simply do:
-
-```bash
-npm run build
-npm publish
+```shell
+yarn cm
 ```
 
-That's it!
+### Publishing 🎉
+
+Publishes are managed in CircleCI on merges into master. See the commit message [docs](https://github.com/semantic-release/semantic-release#commit-message-format) on how to trigger a new NPM publish and version.
