@@ -4,9 +4,10 @@
   "description": "An Angular schematic for adding prettier",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "run-s test:app",
+    "test": "run-s test:all",
     "test:schematic": "npm run build && jasmine src/**/*_spec.js",
-    "test:app": "cd sandbox && yarn && run-s lint test e2e build",
+    "test:all": "cd sandbox && yarn && run-s lint test e2e build",
+    "test:ci": "cd sandbox && yarn && run-s lint test build",
     "clean": "git checkout HEAD -- sandbox && git clean -f -d sandbox",
     "cm": "git-cz",
     "semantic-release": "semantic-release"
