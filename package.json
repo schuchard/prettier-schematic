@@ -6,7 +6,7 @@
     "build": "tsc -p tsconfig.json",
     "test": "run-s test:app",
     "test:schematic": "npm run build && jasmine src/**/*_spec.js",
-    "test:app": "cd sandbox && run-s yarn lint test e2e build",
+    "test:app": "cd sandbox && yarn && run-s lint test e2e build",
     "clean": "git checkout HEAD -- sandbox && git clean -f -d sandbox",
     "cm": "git-cz",
     "semantic-release": "semantic-release"
