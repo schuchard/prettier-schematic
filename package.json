@@ -7,7 +7,7 @@
     "test": "run-s test:all",
     "test:schematic": "npm run build && jasmine src/**/*_spec.js",
     "test:all": "cd sandbox && yarn && run-s lint test e2e build",
-    "test:ci": "cd sandbox && yarn && run-s lint build clean",
+    "test:ci": "cd sandbox && yarn && run-s lint build && cd .. clean",
     "clean": "git checkout HEAD -- sandbox && git clean -f -d sandbox",
     "cm": "git-cz",
     "semantic-release": "semantic-release"
