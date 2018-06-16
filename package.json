@@ -13,6 +13,7 @@
     "schematics",
     "angular"
   ],
+  "main": "src/prettier/index.js",
   "author": "Kevin Schuchard",
   "license": "MIT",
   "schematics": "./src/collection.json",

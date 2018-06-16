@@ -3,7 +3,7 @@
   "schematics": {
     "prettier": {
       "description": "A blank schematic.",
-      "factory": "./prettier/index#prettier"
+      "factory": "./prettier/index"
     }
   }
 }
