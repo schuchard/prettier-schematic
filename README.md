@@ -1,4 +1,8 @@
-# Getting Started With Schematics
+# Angular Prettier schematic
+
+[![CircleCI](https://circleci.com/gh/schuchard/prettier-schematic.svg?style=svg)](https://circleci.com/gh/schuchard/prettier-schematic)
+
+## Getting Started With Schematics
 
 This repository is a basic Schematic implementation that serves as a starting point to create and publish Schematics to NPM.
 
@@ -25,4 +29,3 @@ npm publish
 ```
 
 That's it!
- 
