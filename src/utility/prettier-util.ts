@@ -17,6 +17,7 @@ export interface PrettierOptions {
   requirePragma?: boolean;
   insertPragma?: boolean;
   proseWrap?: 'preserve' | 'always' | 'never';
+  lintStaged?: 'true' | 'false';
   [index: string]: any;
 }
 
@@ -37,6 +38,7 @@ export class PrettierSettings implements PrettierOptions {
   requirePragma = false;
   insertPragma = false;
   proseWrap = 'preserve' as 'preserve';
+  lintStaged = 'true' as 'true';
 }
 
 export function getDefaultOptions(
