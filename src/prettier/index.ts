@@ -10,7 +10,7 @@ import {
   mergeWith,
 } from '@angular-devkit/schematics';
 import { Observable, of } from 'rxjs';
-import { map, concatMap } from 'rxjs/operators';
+import { map, concatMap, filter } from 'rxjs/operators';
 
 import {
   PrettierOptions,
@@ -26,17 +26,27 @@ export default function(options: PrettierOptions): Rule {
     const cliOptions = getDefaultOptions(context, options, new PrettierSettings());
 
     return chain([
-      addDependencies(),
+      addDependencies(cliOptions),
       addPrettierFiles(cliOptions),
       modifyTsLint(),
       updateEditorConfig(cliOptions),
+      addLintStagedConfig(cliOptions),
     ])(tree, context);
   };
 }
 
-function addDependencies(): Rule {
+function addDependencies(options: PrettierOptions): Rule {
   return (tree: Tree): Observable<Tree> => {
-    return of('prettier').pipe(
+    const lintStagedDep = ['lint-staged', 'husky'];
+
+    return of('prettier', 'lint-staged', 'husky').pipe(
+      filter((pkg) => {
+        if (options.lintStaged === 'false') {
+          // remove lint-staged deps
+          return !lintStagedDep.some((p) => p === pkg);
+        }
+        return true;
+      }),
       concatMap((pkg: string) => getLatestNodeVersion(pkg)),
       map((packageFromRegistry: NpmRegistryPackage) => {
         const { name, version } = packageFromRegistry;
@@ -114,6 +124,14 @@ function updateEditorConfig(options: PrettierOptions): Rule {
           tree.overwrite(editorConfigPath, modifiedEditorConfig);
         }
       }
+    }
+    return tree;
+  };
+}
+
+function addLintStagedConfig(options: PrettierOptions) {
+  return (tree: Tree) => {
+    if (options.lintStaged) {
     }
     return tree;
   };
