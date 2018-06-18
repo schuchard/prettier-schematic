@@ -12,15 +12,20 @@ import {
 import { Observable, of } from 'rxjs';
 import { map, concatMap } from 'rxjs/operators';
 
-import { PrettierOptions, getDefaultOptions, PrettierSettings } from '../utility/prettier-util';
+import {
+  PrettierOptions,
+  getDefaultOptions,
+  PrettierSettings,
+  removeConflictingTsLintRules,
+} from '../utility/prettier-util';
 import { addPackageJsonDependency, NodeDependencyType } from '../utility/dependencies';
-import { getLatestNodeVersion, NpmRegistryPackage } from '../utility/util';
+import { getLatestNodeVersion, NpmRegistryPackage, getFileAsJson } from '../utility/util';
 
 export default function(options: PrettierOptions): Rule {
   return (tree: Tree, context: SchematicContext) => {
     const cliOptions = getDefaultOptions(context, options, new PrettierSettings());
 
-    return chain([addDependencies(), addPrettierFiles(cliOptions)])(tree, context);
+    return chain([addDependencies(), addPrettierFiles(cliOptions), modifyTsLint()])(tree, context);
   };
 }
 
@@ -49,5 +54,22 @@ function addPrettierFiles(prettierOptions: PrettierOptions): Rule {
     ]);
 
     return chain([mergeWith(templateSource)])(tree, context);
+  };
+}
+
+function modifyTsLint(): Rule {
+  return (tree: Tree, context: SchematicContext) => {
+    const tslintPath = 'tslint.json';
+    if (tree.exists(tslintPath)) {
+      const prettierSafeTsLint = removeConflictingTsLintRules(getFileAsJson(tree, tslintPath));
+
+      tree.overwrite(tslintPath, JSON.stringify(prettierSafeTsLint, null, 2));
+    } else {
+      context.logger.info(
+        `unable to locate tslint file at ${tslintPath}, conflicting styles may exists`
+      );
+    }
+
+    return tree;
   };
 }

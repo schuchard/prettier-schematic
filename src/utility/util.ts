@@ -1,4 +1,6 @@
 import { get } from 'http';
+import { Tree, SchematicsException } from '@angular-devkit/schematics';
+import { parseJson, JsonParseMode, JsonValue } from '@angular-devkit/core';
 
 export interface NpmRegistryPackage {
   name: string;
@@ -26,4 +28,14 @@ export function getLatestNodeVersion(packageName: string): Promise<NpmRegistryPa
   function buildPackage(name: string, version: string = DEFAULT_VERSION): NpmRegistryPackage {
     return { name, version };
   }
+}
+
+export function getFileAsJson(host: Tree, path: string): JsonValue {
+  const configBuffer = host.read(path);
+  if (configBuffer === null) {
+    throw new SchematicsException(`Could not find (${path})`);
+  }
+  const content = configBuffer.toString();
+
+  return parseJson(content, JsonParseMode.Loose);
 }
