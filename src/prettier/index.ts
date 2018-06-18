@@ -20,7 +20,7 @@ export default function(options: PrettierOptions): Rule {
   return (tree: Tree, context: SchematicContext) => {
     const cliOptions = getDefaultOptions(context, options, new PrettierSettings());
 
-    return chain([addDependencies(), addPrettierConfig(cliOptions)])(tree, context);
+    return chain([addDependencies(), addPrettierFiles(cliOptions)])(tree, context);
   };
 }
 
@@ -39,7 +39,7 @@ function addDependencies(): Rule {
   };
 }
 
-function addPrettierConfig(prettierOptions: PrettierOptions): Rule {
+function addPrettierFiles(prettierOptions: PrettierOptions): Rule {
   return (tree: Tree, context: SchematicContext) => {
     const templateSource = apply(url('./files'), [
       template({
