@@ -25,7 +25,12 @@ export default function(options: PrettierOptions): Rule {
   return (tree: Tree, context: SchematicContext) => {
     const cliOptions = getDefaultOptions(context, options, new PrettierSettings());
 
-    return chain([addDependencies(), addPrettierFiles(cliOptions), modifyTsLint()])(tree, context);
+    return chain([
+      addDependencies(),
+      addPrettierFiles(cliOptions),
+      modifyTsLint(),
+      updateEditorConfig(cliOptions),
+    ])(tree, context);
   };
 }
 
@@ -70,6 +75,46 @@ function modifyTsLint(): Rule {
       );
     }
 
+    return tree;
+  };
+}
+
+function updateEditorConfig(options: PrettierOptions): Rule {
+  return (tree: Tree, context: SchematicContext) => {
+    const editorConfigPath = '.editorconfig';
+    const rule = 'indent_size';
+
+    if (tree.exists(editorConfigPath)) {
+      // editorconfig exists on host
+      const editorConfigBuffer = tree.read(editorConfigPath);
+
+      if (editorConfigBuffer === null) {
+        // unable to read editorconfig
+        context.logger.info(
+          `Could not modify .editorconfig at ${editorConfigPath}. Update ${rule} to match tabWidth: ${
+            options.tabWidth
+          }.`
+        );
+      } else {
+        // editorconfig parsed, modify
+        const ecBuffer = editorConfigBuffer.toString();
+
+        if (ecBuffer.includes(rule)) {
+          const modifiedEditorConfig = ecBuffer
+            .split('\n')
+            .map((line) => {
+              if (line.includes(rule)) {
+                return `indent_size = ${options.tabWidth}`;
+              } else {
+                return line;
+              }
+            })
+            .join('\n');
+
+          tree.overwrite(editorConfigPath, modifiedEditorConfig);
+        }
+      }
+    }
     return tree;
   };
 }
