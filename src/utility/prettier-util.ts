@@ -44,16 +44,25 @@ export function getDefaultOptions(
   cliOptions: PrettierOptions,
   defaultSettings: PrettierSettings
 ): PrettierOptions {
-  return Object.entries(defaultSettings).map(([key, value]) => {
-    if (cliOptions[key] !== undefined) {
-      context.logger.info(`add ${key} setting`);
+  return Object.entries(defaultSettings).reduce((acc: any, [key, defaultValue]) => {
+    const cliValue = cliOptions[key];
+    if (cliValue !== undefined) {
+      // modify default option with cli value
+      context.logger.debug(`changin ${key} default to: ${cliValue}`);
 
-      return {
-        key,
-        value: cliOptions[key],
-      };
+      acc[key] = wrapAsString(key, cliValue);
     } else {
-      return { key, value };
+      // use default option
+      acc[key] = wrapAsString(key, defaultValue);
     }
-  });
+
+    return acc;
+  }, {});
+}
+
+function wrapAsString(key: any, value: any): boolean {
+  const hasStringValue = ['trailingComma', 'arrowParens', 'parser', 'filepath', 'proseWrap'].some(
+    (value) => key == value
+  );
+  return hasStringValue ? `"${value}"` : value;
 }
