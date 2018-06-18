@@ -1,4 +1,14 @@
-import { Rule, SchematicContext, Tree, chain } from '@angular-devkit/schematics';
+import {
+  Rule,
+  SchematicContext,
+  Tree,
+  chain,
+  apply,
+  url,
+  template,
+  move,
+  mergeWith,
+} from '@angular-devkit/schematics';
 import { Observable, of } from 'rxjs';
 import { map, concatMap } from 'rxjs/operators';
 
@@ -8,9 +18,9 @@ import { getLatestNodeVersion, NpmRegistryPackage } from '../utility/util';
 
 export default function(options: PrettierOptions): Rule {
   return (tree: Tree, context: SchematicContext) => {
-    // const cliOptions = getDefaultOptions(context, options, new PrettierSettings())
+    const cliOptions = getDefaultOptions(context, options, new PrettierSettings());
 
-    return chain([addDependencies()])(tree, context);
+    return chain([addDependencies(), addPrettierConfig(cliOptions)])(tree, context);
   };
 }
 
@@ -26,5 +36,18 @@ function addDependencies(): Rule {
         return tree;
       })
     );
+  };
+}
+
+function addPrettierConfig(prettierOptions: PrettierOptions): Rule {
+  return (tree: Tree, context: SchematicContext) => {
+    const templateSource = apply(url('./files'), [
+      template({
+        ...prettierOptions,
+      }),
+      move('./'),
+    ]);
+
+    return chain([mergeWith(templateSource)])(tree, context);
   };
 }
