@@ -22,9 +22,14 @@
     "angular"
   ],
   "main": "src/prettier/index.js",
-  "author": "Kevin Schuchard",
+  "bin": "src/prettier/index.js",
+  "author": "Kevin Schuchard <schuchard.kevin@gmail.com>",
+  "bugs": "https://github.com/schuchard/prettier-schematic/issues",
   "license": "MIT",
   "schematics": "./src/collection.json",
+  "engines": {
+    "node": ">=8.11.0"
+  },
   "dependencies": {
     "@angular-devkit/core": "^0.6.8",
     "@angular-devkit/schematics": "^0.6.8",
