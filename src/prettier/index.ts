@@ -19,7 +19,12 @@ import {
   removeConflictingTsLintRules,
 } from '../utility/prettier-util';
 import { addPackageJsonDependency, NodeDependencyType } from '../utility/dependencies';
-import { getLatestNodeVersion, NpmRegistryPackage, getFileAsJson } from '../utility/util';
+import {
+  getLatestNodeVersion,
+  NpmRegistryPackage,
+  getFileAsJson,
+  addPropertyToPackageJson,
+} from '../utility/util';
 
 export default function(options: PrettierOptions): Rule {
   return (tree: Tree, context: SchematicContext) => {
@@ -130,8 +135,15 @@ function updateEditorConfig(options: PrettierOptions): Rule {
 }
 
 function addLintStagedConfig(options: PrettierOptions) {
-  return (tree: Tree) => {
-    if (options.lintStaged) {
+  return (tree: Tree, context: SchematicContext) => {
+    if (options.lintStaged !== 'false') {
+      addPropertyToPackageJson(tree, context, 'scripts', {
+        precommit: 'lint-staged',
+      });
+
+      addPropertyToPackageJson(tree, context, 'lint-staged', {
+        '*.{ts,tsx}': ['prettier --parser typescript --write', 'git add'],
+      });
     }
     return tree;
   };
