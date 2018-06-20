@@ -6,9 +6,10 @@
 !src/**/files/**/*.js
 !src/**/files/**/*.ts
 
-.vscode/*
+*.vscode
 
 sandbox
 docs
 
 *.circleci
+*.github

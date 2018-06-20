@@ -46,7 +46,7 @@ function addDependencies(options: PrettierOptions): Rule {
 
     return of('prettier', 'lint-staged', 'husky').pipe(
       filter((pkg) => {
-        if (options.lintStaged === 'false') {
+        if (options.lintStaged === false) {
           // remove lint-staged deps
           return !lintStagedDep.some((p) => p === pkg);
         }
@@ -136,7 +136,7 @@ function updateEditorConfig(options: PrettierOptions): Rule {
 
 function addLintStagedConfig(options: PrettierOptions) {
   return (tree: Tree, context: SchematicContext) => {
-    if (options.lintStaged !== 'false') {
+    if (options.lintStaged === true) {
       addPropertyToPackageJson(tree, context, 'scripts', {
         precommit: 'lint-staged',
       });

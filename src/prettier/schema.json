@@ -7,27 +7,27 @@
     "printWidth": {
       "type": "number",
       "description": "Specify the line length that the printer will wrap on.",
-      "default": "80"
+      "default": 80
     },
     "tabWidth": {
       "type": "number",
       "description": "Specify the number of spaces per indentation-level.",
-      "default": "false"
+      "default": 2
     },
     "useTabs": {
       "type": "boolean",
       "description": "Indent lines with tabs instead of spaces.",
-      "default": "false"
+      "default": false
     },
     "semi": {
       "type": "boolean",
       "description": "Print semicolons at the ends of statements.",
-      "default": "true"
+      "default": true
     },
     "singleQuote": {
       "type": "boolean",
       "description": "Use single quotes instead of double quotes.",
-      "default": "false"
+      "default": false
     },
     "trailingComma": {
       "type": "string",
@@ -38,13 +38,13 @@
     "bracketSpacing": {
       "type": "boolean",
       "description": "Print spaces between brackets in object literals.",
-      "default": "true"
+      "default": true
     },
     "jsxBracketSameLine": {
       "type": "boolean",
       "description":
         "Put the > of a multi-line JSX element at the end of the last line instead of being alone on the next line (does not apply to self closing elements).",
-      "default": "false"
+      "default": false
     },
     "arrowParens": {
       "type": "string",
@@ -54,24 +54,19 @@
     "rangeStart": {
       "type": "number",
       "description": "Format only a segment of a file.",
-      "default": "0"
-    },
-    "rangeEnd": {
-      "type": "number",
-      "description": "Format only a segment of a file.",
-      "default": "Infinity"
+      "default": 0
     },
     "requirePragma": {
       "type": "boolean",
       "description":
         "Prettier can restrict itself to only format files that contain a special comment, called a pragma, at the top of the file. This is very useful when gradually transitioning large, unformatted codebases to prettier.",
-      "default": "false"
+      "default": false
     },
     "insertPragma": {
       "type": "boolean",
       "description":
         "Prettier can insert a special @format marker at the top of files specifying that the file has been formatted with prettier. This works well when used in tandem with the --require-pragma option.",
-      "default": "false"
+      "default": false
     },
     "proseWrap": {
       "type": "string",
@@ -82,7 +77,7 @@
     "lintStaged": {
       "type": "boolean",
       "description": "Run Prettier against staged git files.",
-      "default": "true"
+      "default": true
     }
   },
   "required": [],

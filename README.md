@@ -7,6 +7,55 @@
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
+## Usage 🚀
+
+Install globally
+```shell
+npm install -g @schuchard/prettier
+```
+
+Then in an Angular CLI root directory:
+
+```shell
+ng g @schuchard/prettier:prettier
+```
+
+## Defaults
+
+Without any CLI arguments the [default](https://prettier.io/docs/en/options.html) Prettier options will be applied. The defaults can be changed in one of two ways:
+
+- modifying the `./prettier.config.js` after the schematic runs
+- passing a CLI flag with the desired value for any of the options
+  - `ng g @schuchard/prettier:prettier --printWidth=100 --tabWidth=4`
+
+```json
+printWidth = 80;
+tabWidth = 2;
+useTabs = false;
+semi = true;
+singleQuote = false;
+trailingComma = "none";
+bracketSpacing = true;
+jsxBracketSameLine = false;
+arrowParens = "avoid";
+rangeStart = 0;
+rangeEnd = Infinity;
+requirePragma = false;
+insertPragma = false;
+proseWrap = "preserve";
+lintStaged = true;
+```
+
+### Lint-staged
+
+By default [lint-staged](https://github.com/okonet/lint-staged) is [configured](https://prettier.io/docs/en/precommit.html#option-1-lint-staged-https-githubcom-okonet-lint-staged) automatically along with a pre-commit hook. This will run Prettier against all new files as they are committed.
+
+lint-stage and the precommit hook can be disabled with the following
+
+```shell
+ng g @schuchard/prettier:prettier --lintStaged=false
+```
+
 ## Contributing
 
 ### Getting started
@@ -31,10 +80,18 @@ This repo uses semantic-release and relies on [formatted](https://github.com/sem
 yarn cm
 ```
 
-### Publishing 🎉
-
-Publishes are managed in CircleCI on merges into master. See the commit message [docs](https://github.com/semantic-release/semantic-release#commit-message-format) on how to trigger a new NPM publish and version.
-
 ## Documentation
 
 Unsure how to do something with schematics? Check the Angular [schematics](https://github.com/angular/angular-cli/tree/master/packages/schematics/angular) for inspiration.
+
+## Publishing
+
+- First ensure you're authenticated with `npm login`.
+
+```shell
+npm run release
+```
+
+## Issues & Requests 📬
+
+Submit an [issue](https://github.com/schuchard/prettier-schematic/issues/new/choose)
