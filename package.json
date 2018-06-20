@@ -11,7 +11,7 @@
     "test:ci": "cd sandbox && yarn && run-s lint build && cd .. clean",
     "clean": "git checkout HEAD -- sandbox && git clean -f -d sandbox",
     "clean:launch": "run-s clean launch:schematic",
-    "launch:schematic": "cd sandbox && ng g @schuchard/prettier:prettier",
+    "launch:schematic": "cd sandbox && ng g @schuchard/prettier:add",
     "link:sandbox": "cd sandbox && yarn link \"@schuchard/prettier\"",
     "cm": "git-cz",
     "release": "np"

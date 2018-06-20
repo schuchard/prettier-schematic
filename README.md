@@ -17,7 +17,7 @@ npm install -g @schuchard/prettier
 Then in an Angular CLI root directory:
 
 ```shell
-ng g @schuchard/prettier:prettier
+ng g @schuchard/prettier:add
 ```
 
 ## Defaults
@@ -26,7 +26,7 @@ Without any CLI arguments the [default](https://prettier.io/docs/en/options.html
 
 - modifying the `./prettier.config.js` after the schematic runs
 - passing a CLI flag with the desired value for any of the options
-  - `ng g @schuchard/prettier:prettier --printWidth=100 --tabWidth=4`
+  - `ng g @schuchard/prettier:add --printWidth=100 --tabWidth=4`
 
 ```json
 printWidth = 80;
@@ -53,7 +53,7 @@ By default [lint-staged](https://github.com/okonet/lint-staged) is [configured](
 lint-stage and the precommit hook can be disabled with the following
 
 ```shell
-ng g @schuchard/prettier:prettier --lintStaged=false
+ng g @schuchard/prettier:add --lintStaged=false
 ```
 
 ## Contributing

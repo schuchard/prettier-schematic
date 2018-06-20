@@ -6,6 +6,11 @@
       "factory": "./prettier/index",
       "schema": "./prettier/schema.json"
     },
+    "add": {
+      "description": "AddsPrettier to the application.",
+      "factory": "./prettier/index",
+      "schema": "./prettier/schema.json"
+    },
     "ng-add": {
       "description": "AddsPrettier to the application.",
       "factory": "./prettier/index",
