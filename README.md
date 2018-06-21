@@ -25,7 +25,7 @@ ng g @schuchard/prettier:add
 Without any CLI arguments the [default](https://prettier.io/docs/en/options.html) Prettier options will be applied. The defaults can be changed in one of two ways:
 
 - modifying the `./prettier.config.js` after the schematic runs
-- passing a CLI flag with the desired value for any of the options
+- passing a flag to the schematic with the desired value for any of the options
   - `ng g @schuchard/prettier:add --printWidth=100 --tabWidth=4`
 
 ```json
@@ -46,9 +46,13 @@ proseWrap = "preserve";
 lintStaged = true;
 ```
 
+## Running Prettier
+
 ### Lint-staged
 
 By default [lint-staged](https://github.com/okonet/lint-staged) is [configured](https://prettier.io/docs/en/precommit.html#option-1-lint-staged-https-githubcom-okonet-lint-staged) automatically along with a pre-commit hook. This will run Prettier against all new files as they are committed.
+
+![lint-staged-example](docs/prettier-vsc-term-med.gif)
 
 lint-stage and the precommit hook can be disabled with the following
 
