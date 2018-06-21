@@ -2,7 +2,9 @@
 src/**/*.js
 src/**/*.js.map
 src/**/*.d.ts
+
 !src/prettier/schema.d.ts
+!src/**/files/**/*.js
 
 # IDEs
 .idea/
