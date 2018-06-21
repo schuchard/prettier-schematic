@@ -52,7 +52,7 @@ lintStaged = true;
 
 By default [lint-staged](https://github.com/okonet/lint-staged) is [configured](https://prettier.io/docs/en/precommit.html#option-1-lint-staged-https-githubcom-okonet-lint-staged) automatically along with a pre-commit hook. This will run Prettier against all new files as they are committed.
 
-![lint-staged-example](docs/prettier-vsc-term-med.gif)
+![lint-staged-example](docs/prettier-vsc-term-600.gif)
 
 lint-stage and the precommit hook can be disabled with the following
 
