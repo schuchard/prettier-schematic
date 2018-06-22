@@ -9,6 +9,7 @@ import {
   move,
   mergeWith,
 } from '@angular-devkit/schematics';
+import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { Observable, of } from 'rxjs';
 import { map, concatMap, filter } from 'rxjs/operators';
 
@@ -33,6 +34,7 @@ export default function(options: PrettierOptions): Rule {
     return chain([
       addDependencies(cliOptions),
       addPrettierFiles(cliOptions),
+      installPackages(),
       modifyTsLint(),
       updateEditorConfig(cliOptions),
       addLintStagedConfig(cliOptions),
@@ -61,6 +63,12 @@ function addDependencies(options: PrettierOptions): Rule {
         return tree;
       })
     );
+  };
+}
+
+function installPackages(): Rule {
+  return (tree: Tree, context: SchematicContext): Tree => {
+    return context.addTask(new NodePackageInstallTask()) && tree;
   };
 }
 
