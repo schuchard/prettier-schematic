@@ -1,6 +1,6 @@
 # Angular Prettier schematic
 
-🚀 This repository is a Angular CLI schematic that adds Prettier to an Angular project.
+Schematic that adds prettier and a pre-commit hook for formatting staged files.
 
 [![CircleCI](https://circleci.com/gh/schuchard/prettier-schematic.svg?style=svg)](https://circleci.com/gh/schuchard/prettier-schematic)
 [![npm](https://img.shields.io/npm/v/@schuchard/prettier.svg)](https://www.npmjs.com/package/@schuchard/prettier)
