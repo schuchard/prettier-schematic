@@ -88,6 +88,8 @@ yarn cm
 
 Unsure how to do something with schematics? Check the Angular [schematics](https://github.com/angular/angular-cli/tree/master/packages/schematics/angular) for inspiration.
 
+Inspiration came from this excellent article by [Aaron Frost](https://medium.com/ngconf/ultimate-prettier-angular-cheatsheet-777c9515f4fb)
+
 ## Publishing
 
 - First ensure you're authenticated with `npm login`.
