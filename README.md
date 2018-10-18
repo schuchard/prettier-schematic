@@ -21,7 +21,7 @@ Run in an Angular CLI root directory:
 ng g @schuchard/prettier:add
 ```
 
-## How does it work
+## How does Prettier work with Angular
 
 ### Automatically with lint-staged
 
@@ -44,6 +44,16 @@ While lint-staged only runs prettier against staged files, you can manually run 
 `npm run prettier`
 
 ## Defaults Prettier options
+
+### Angular 7
+
+This schematic takes advantage of CLI [prompts](https://github.com/angular/angular-cli/blob/fb4e8187824fe66e50b42c16f95458e82b4787a8/docs/specifications/schematic-prompts.md) for configuring Prettier options. If you're unsure of a setting, press enter to select the default. You can skip a prompt by passing any of the options when call the schematic.
+
+```ng g @schuchard/prettier:add --printWidth=100```
+
+![schematic-cli](docs/prettier-schematic-cli.gif)
+
+### < Angular 7
 
 Without any CLI arguments the [default](https://prettier.io/docs/en/options.html) Prettier options will be applied. The defaults can be changed in one of two ways:
 

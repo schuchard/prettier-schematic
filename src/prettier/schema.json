@@ -5,14 +5,16 @@
   "type": "object",
   "properties": {
     "printWidth": {
-      "type": "number",
+      "enum": [80, 100, 120, 140],
       "description": "Specify the line length that the printer will wrap on.",
-      "default": 80
+      "default": 80,
+      "x-prompt": "Specify the line length that the printer will wrap on (default: 80)"
     },
     "tabWidth": {
-      "type": "number",
+      "enum": [2,4],
       "description": "Specify the number of spaces per indentation-level.",
-      "default": 2
+      "default": 2,
+      "x-prompt": "Specify the number of spaces per indentation-level"
     },
     "useTabs": {
       "type": "boolean",
@@ -22,18 +24,20 @@
     "semi": {
       "type": "boolean",
       "description": "Print semicolons at the ends of statements.",
-      "default": true
+      "default": true,
+      "x-prompt": "Print semicolons at the ends of statements?"
     },
     "singleQuote": {
       "type": "boolean",
       "description": "Use single quotes instead of double quotes.",
-      "default": false
+      "default": false,
+      "x-prompt": "Use single quotes instead of double quotes?"
     },
     "trailingComma": {
-      "type": "string",
-      "description":
-        "Print trailing commas wherever possible when multi-line. (A single-line array, for example, never gets trailing commas.)",
-      "default": "none"
+      "enum": ["none", "es5", "all"],
+      "description": "Print trailing commas wherever possible when multi-line. (A single-line array, for example, never gets trailing commas.)",
+      "default": "none",
+      "x-prompt": "Print trailing commas wherever possible when multi-line? (default: none)"
     },
     "bracketSpacing": {
       "type": "boolean",
@@ -42,8 +46,7 @@
     },
     "jsxBracketSameLine": {
       "type": "boolean",
-      "description":
-        "Put the > of a multi-line JSX element at the end of the last line instead of being alone on the next line (does not apply to self closing elements).",
+      "description": "Put the > of a multi-line JSX element at the end of the last line instead of being alone on the next line (does not apply to self closing elements).",
       "default": false
     },
     "arrowParens": {
@@ -58,26 +61,24 @@
     },
     "requirePragma": {
       "type": "boolean",
-      "description":
-        "Prettier can restrict itself to only format files that contain a special comment, called a pragma, at the top of the file. This is very useful when gradually transitioning large, unformatted codebases to prettier.",
+      "description": "Prettier can restrict itself to only format files that contain a special comment, called a pragma, at the top of the file. This is very useful when gradually transitioning large, unformatted codebases to prettier.",
       "default": false
     },
     "insertPragma": {
       "type": "boolean",
-      "description":
-        "Prettier can insert a special @format marker at the top of files specifying that the file has been formatted with prettier. This works well when used in tandem with the --require-pragma option.",
+      "description": "Prettier can insert a special @format marker at the top of files specifying that the file has been formatted with prettier. This works well when used in tandem with the --require-pragma option.",
       "default": false
     },
     "proseWrap": {
       "type": "string",
-      "description":
-        "By default, Prettier will wrap markdown text as-is since some services use a linebreak-sensitive renderer, e.g. GitHub comment and BitBucket. In some cases you may want to rely on editor/viewer soft wrapping instead, so this option allows you to opt out with \"never\".",
+      "description": "By default, Prettier will wrap markdown text as-is since some services use a linebreak-sensitive renderer, e.g. GitHub comment and BitBucket. In some cases you may want to rely on editor/viewer soft wrapping instead, so this option allows you to opt out with \"never\".",
       "default": "preserve"
     },
     "lintStaged": {
       "type": "boolean",
       "description": "Run Prettier against staged git files.",
-      "default": true
+      "default": true,
+      "x-prompt": "Add lint-staged for running Prettier against staged files?"
     }
   },
   "required": [],
