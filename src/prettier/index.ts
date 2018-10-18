@@ -38,9 +38,12 @@ export default function(options: PrettierOptions): Rule {
       modifyTsLint(),
       updateEditorConfig(cliOptions),
       addLintStagedConfig(cliOptions),
+      addScripts(),
     ])(tree, context);
   };
 }
+
+const prettierCommand = 'prettier --parser typescript --write';
 
 function addDependencies(options: PrettierOptions): Rule {
   return (tree: Tree): Observable<Tree> => {
@@ -150,9 +153,20 @@ function addLintStagedConfig(options: PrettierOptions) {
       });
 
       addPropertyToPackageJson(tree, context, 'lint-staged', {
-        '*.{ts,tsx}': ['prettier --parser typescript --write', 'git add'],
+        '*.{ts,tsx}': [prettierCommand, 'git add'],
       });
     }
+    return tree;
+  };
+}
+
+function addScripts() {
+  return (tree: Tree, context: SchematicContext) => {
+
+    addPropertyToPackageJson(tree, context, 'scripts', {
+      // run against all typescript files
+      prettier: `${prettierCommand} '**/*.ts'`,
+    });
     return tree;
   };
 }

@@ -1,6 +1,6 @@
 # Angular Prettier schematic
 
-Schematic that adds prettier and a pre-commit hook for formatting staged files.
+A Schematic that adds prettier and a pre-commit hook for formatting staged files.
 
 [![CircleCI](https://circleci.com/gh/schuchard/prettier-schematic.svg?style=svg)](https://circleci.com/gh/schuchard/prettier-schematic)
 [![npm](https://img.shields.io/npm/v/@schuchard/prettier.svg)](https://www.npmjs.com/package/@schuchard/prettier)
@@ -10,23 +10,48 @@ Schematic that adds prettier and a pre-commit hook for formatting staged files.
 ## Usage 🚀
 
 Install globally
+
 ```shell
 npm install -g @schuchard/prettier
 ```
 
-Then in an Angular CLI root directory:
+Run in an Angular CLI root directory:
 
 ```shell
 ng g @schuchard/prettier:add
 ```
 
-## Defaults
+## How does it work
+
+### Automatically with lint-staged
+
+By default [lint-staged](https://github.com/okonet/lint-staged) is [configured](https://prettier.io/docs/en/precommit.html#option-1-lint-staged-https-githubcom-okonet-lint-staged) along with a pre-commit hook. This will run Prettier against all new files as they are committed according to the settings defined in `prettier.config.json`. Generally speaking, your workflow should remain unchanged - `git add, commit, push`
+
+![lint-staged-example](docs/prettier-vsc-term-600.gif)
+
+#### Disabling lint-staged install
+
+lint-stage and the precommit hook can be disabled with the following
+
+```shell
+ng g @schuchard/prettier:add --lintStaged=false
+```
+
+### Manually
+
+While lint-staged only runs prettier against staged files, you can manually run Prettier against **ALL** typescript files with the script added to the `package.json`
+
+`npm run prettier`
+
+## Defaults Prettier options
 
 Without any CLI arguments the [default](https://prettier.io/docs/en/options.html) Prettier options will be applied. The defaults can be changed in one of two ways:
 
 - modifying the `./prettier.config.js` after the schematic runs
-- passing a flag to the schematic with the desired value for any of the options
+- passing a flag to the schematic with the desired value for any of the options. For example:
   - `ng g @schuchard/prettier:add --printWidth=100 --tabWidth=4`
+
+### Example default `prettier.config.js`
 
 ```json
 printWidth = 80;
@@ -44,20 +69,6 @@ requirePragma = false;
 insertPragma = false;
 proseWrap = "preserve";
 lintStaged = true;
-```
-
-## Running Prettier
-
-### Lint-staged
-
-By default [lint-staged](https://github.com/okonet/lint-staged) is [configured](https://prettier.io/docs/en/precommit.html#option-1-lint-staged-https-githubcom-okonet-lint-staged) automatically along with a pre-commit hook. This will run Prettier against all new files as they are committed.
-
-![lint-staged-example](docs/prettier-vsc-term-600.gif)
-
-lint-stage and the precommit hook can be disabled with the following
-
-```shell
-ng g @schuchard/prettier:add --lintStaged=false
 ```
 
 ## Contributing
@@ -92,7 +103,7 @@ Inspiration came from this excellent article by [Aaron Frost](https://medium.com
 
 ## Publishing
 
-- First ensure you're authenticated with `npm login`.
+- First, ensure you're authenticated with `npm login`.
 
 ```shell
 npm run release
