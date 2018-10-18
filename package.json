@@ -12,9 +12,9 @@
     "clean": "git checkout HEAD -- sandbox && git clean -f -d sandbox",
     "clean:launch": "run-s clean launch:schematic",
     "launch:schematic": "cd sandbox && ng g @schuchard/prettier:add",
-    "link:sandbox": "cd sandbox && yarn link \"@schuchard/prettier\"",
+    "link:sandbox": "yarn link && cd sandbox && yarn link \"@schuchard/prettier\"",
     "cm": "git-cz",
-    "release": "np"
+    "release": "yarn build:once && yarn np"
   },
   "keywords": [
     "prettier",
