@@ -16,6 +16,7 @@
     "build:clean:launch": "run-s build:once clean launch:schematic:noPrompts",
     "build:clean:launch:test": "run-s build:once clean launch:schematic:noPrompts && cd sandbox && yarn prettier",
     "link:sandbox": "yarn link && cd sandbox && yarn link \"@schuchard/prettier\"",
+    "update:sandbox": "cd sandbox && ng update --all",
     "cm": "git-cz",
     "release": "yarn build:once && yarn np"
   },
