@@ -23,21 +23,7 @@ ng g @schuchard/prettier:add
 
 ## How does Prettier work with Angular
 
-### Angular formatting
-
-Beginning with [1.15](https://prettier.io/blog/2018/11/07/1.15.0.html#html-vue-angular), Prettier supports formatting HTML and Angular files.
-
-#### Format all Angular Files - `{js,json,css,md,ts,html,component.html}`
-
-![format-angular-files](docs/prettier-ng-sm.png)
-
-#### Format only Typescript files
-
-Previous versions of this schematic only formatted Typescript files. That functionality is still available and is configured in the CLI prompts or via the `--formatAllAngularFiles=false` if desired. The default is `true`.
-
-![format-typescript-files](docs/prettier-ts-sm.png)
-
-### Automatically with lint-staged
+### Automatically against staged files
 
 By default [lint-staged](https://github.com/okonet/lint-staged) is [configured](https://prettier.io/docs/en/precommit.html#option-1-lint-staged-https-githubcom-okonet-lint-staged) along with a pre-commit hook. This will run Prettier against all new files as they are committed according to the settings defined in `prettier.config.json`. Generally speaking, your workflow should remain unchanged - `git add, commit, push`
 
@@ -56,6 +42,20 @@ ng g @schuchard/prettier:add --lintStaged=false
 While lint-staged only runs prettier against staged files, you can manually run Prettier against **ALL** [targeted](#Angular-formatting) files with the script added to the `package.json`
 
 `npm run prettier`
+
+## Angular formatting
+
+Beginning with [1.15](https://prettier.io/blog/2018/11/07/1.15.0.html#html-vue-angular), Prettier supports formatting HTML and Angular files.
+
+### Format all Angular Files - `{js,json,css,md,ts,html,component.html}`
+
+![format-angular-files](docs/prettier-ng-sm.png)
+
+### Format only Typescript files
+
+Previous versions of this schematic only formatted Typescript files. That functionality is still available and is configured in the CLI prompts or via the `--formatAllAngularFiles=false` if desired. The default is `true`.
+
+![format-typescript-files](docs/prettier-ts-sm.png)
 
 ## Defaults Prettier options
 
