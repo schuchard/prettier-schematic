@@ -12,6 +12,8 @@
     "clean": "git checkout HEAD -- sandbox && git clean -f -d sandbox",
     "clean:launch": "run-s clean launch:schematic",
     "launch:schematic": "cd sandbox && ng g @schuchard/prettier:add",
+    "launch:schematic:noPrompts": "cd sandbox && ng g @schuchard/prettier:add --printWidth=100 --tabWidth=2 --semi=true --singleQuote=true --trailingComma=es5 --lintStaged=true",
+    "build:clean:launch": "run-s build:once clean launch:schematic:noPrompts",
     "link:sandbox": "yarn link && cd sandbox && yarn link \"@schuchard/prettier\"",
     "cm": "git-cz",
     "release": "yarn build:once && yarn np"

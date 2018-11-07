@@ -15,6 +15,6 @@
       "description": "AddsPrettier to the application.",
       "factory": "./prettier/index",
       "schema": "./prettier/schema.json"
-    },
+    }
   }
 }
