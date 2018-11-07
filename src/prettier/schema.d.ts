@@ -43,4 +43,7 @@ export interface Schema {
 
   // Run Prettier against staged git files.
   lintStaged?: boolean;
+
+  // Format all Angular Files
+  formatAllAngularFiles: boolean
 }

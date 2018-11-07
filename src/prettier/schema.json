@@ -79,6 +79,12 @@
       "description": "Run Prettier against staged git files.",
       "default": true,
       "x-prompt": "Add lint-staged for running Prettier against staged files?"
+    },
+    "formatAllAngularFiles": {
+      "type": "boolean",
+      "description": "Format all Angular Files",
+      "default": true,
+      "x-prompt": "Format all Angular Files {js,json,css,md,ts,html,component.html} > Yes! :)"
     }
   },
   "required": [],

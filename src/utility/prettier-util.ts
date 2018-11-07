@@ -18,6 +18,7 @@ export interface PrettierOptions {
   insertPragma?: boolean;
   proseWrap?: 'preserve' | 'always' | 'never';
   lintStaged?: boolean;
+  formatAllAngularFiles: boolean;
   [index: string]: any;
 }
 
@@ -39,6 +40,7 @@ export class PrettierSettings implements PrettierOptions {
   insertPragma = false;
   proseWrap = 'preserve' as 'preserve';
   lintStaged = true;
+  formatAllAngularFiles = true;
 }
 
 export function getDefaultOptions(
@@ -50,7 +52,7 @@ export function getDefaultOptions(
     const cliValue = cliOptions[key];
     if (cliValue !== undefined) {
       // modify default option with cli value
-      context.logger.debug(`changin ${key} default to: ${cliValue}`);
+      context.logger.debug(`changing ${key} default to: ${cliValue}`);
 
       acc[key] = wrapAsString(key, cliValue);
     } else {

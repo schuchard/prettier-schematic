@@ -38,12 +38,12 @@ export default function(options: PrettierOptions): Rule {
       modifyTsLint(),
       updateEditorConfig(cliOptions),
       addLintStagedConfig(cliOptions),
-      addScripts(),
+      addScripts(cliOptions),
     ])(tree, context);
   };
 }
 
-const prettierCommand = 'prettier --parser typescript --write';
+const prettierCommand = 'prettier --write';
 
 function addDependencies(options: PrettierOptions): Rule {
   return (tree: Tree): Observable<Tree> => {
@@ -148,25 +148,28 @@ function updateEditorConfig(options: PrettierOptions): Rule {
 function addLintStagedConfig(options: PrettierOptions) {
   return (tree: Tree, context: SchematicContext) => {
     if (options.lintStaged === true) {
-      addPropertyToPackageJson(tree, context, 'scripts', {
-        precommit: 'lint-staged',
+      addPropertyToPackageJson(tree, context, 'husky', {
+        hooks: { 'pre-commit': 'lint-staged' },
       });
 
       addPropertyToPackageJson(tree, context, 'lint-staged', {
-        '*.{ts,tsx}': [prettierCommand, 'git add'],
+        [`*.{${getFileTypes(options.formatAllAngularFiles)}}`]: [prettierCommand, 'git add'],
       });
     }
     return tree;
   };
 }
 
-function addScripts() {
+function addScripts(options: PrettierOptions) {
   return (tree: Tree, context: SchematicContext) => {
-
     addPropertyToPackageJson(tree, context, 'scripts', {
       // run against all typescript files
-      prettier: `${prettierCommand} '**/*.ts'`,
+      prettier: `${prettierCommand} '**/*.{${getFileTypes(options.formatAllAngularFiles)}}'`,
     });
     return tree;
   };
+}
+
+function getFileTypes(allAngularFiles: boolean) {
+  return allAngularFiles ? 'js,json,css,md,ts,html,component.html' : 'ts,tsx';
 }
