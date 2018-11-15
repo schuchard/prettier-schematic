@@ -164,7 +164,8 @@ function addScripts(options: PrettierOptions) {
   return (tree: Tree, context: SchematicContext) => {
     addPropertyToPackageJson(tree, context, 'scripts', {
       // run against all typescript files
-      prettier: `${prettierCommand} '**/*.{${getFileTypes(options.formatAllAngularFiles)}}'`,
+      // prettier-ignore
+      prettier: `${prettierCommand} \"**/*.{${getFileTypes(options.formatAllAngularFiles)}}\"`
     });
     return tree;
   };
