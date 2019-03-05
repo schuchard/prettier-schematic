@@ -72,6 +72,10 @@ function wrapAsString(key: any, value: any): boolean {
 }
 
 export function removeConflictingTsLintRules(tsLint: any) {
+  if (!tsLint.rules) {
+    return tsLint;
+  }
+  
   tsLint.rules = Object.entries(tsLint.rules).reduce((acc: any, [tsKey, tsValue]) => {
     if (ruleIsIncompatible(tsKey)) {
       return acc;
