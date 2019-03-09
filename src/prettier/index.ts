@@ -17,7 +17,6 @@ import {
   PrettierOptions,
   getDefaultOptions,
   PrettierSettings,
-  removeConflictingTsLintRules,
 } from '../utility/prettier-util';
 import { addPackageJsonDependency, NodeDependencyType } from '../utility/dependencies';
 import {
@@ -26,6 +25,7 @@ import {
   getFileAsJson,
   addPropertyToPackageJson,
 } from '../utility/util';
+import { JsonObject } from '@angular-devkit/core';
 
 export default function(options: PrettierOptions): Rule {
   return (tree: Tree, context: SchematicContext) => {
@@ -44,12 +44,13 @@ export default function(options: PrettierOptions): Rule {
 }
 
 const prettierCommand = 'prettier --write';
+const tslintConfigPackage = 'tslint-config-prettier';
 
 function addDependencies(options: PrettierOptions): Rule {
   return (tree: Tree): Observable<Tree> => {
     const lintStagedDep = ['lint-staged', 'husky'];
 
-    return of('prettier', 'lint-staged', 'husky').pipe(
+    return of('prettier', 'lint-staged', 'husky', tslintConfigPackage).pipe(
       filter((pkg) => {
         if (options.lintStaged === false) {
           // remove lint-staged deps
@@ -92,9 +93,20 @@ function modifyTsLint(): Rule {
   return (tree: Tree, context: SchematicContext) => {
     const tslintPath = 'tslint.json';
     if (tree.exists(tslintPath)) {
-      const prettierSafeTsLint = removeConflictingTsLintRules(getFileAsJson(tree, tslintPath));
+      const tslint = getFileAsJson(tree, tslintPath) as JsonObject;
 
-      tree.overwrite(tslintPath, JSON.stringify(prettierSafeTsLint, null, 2));
+      if (!tslint) return tree;
+
+      if (Array.isArray(tslint.extends)) {
+        // should be added last https://github.com/prettier/tslint-config-prettier
+        tslint.extends.push(tslintConfigPackage);
+      } else if (typeof tslint.extends === 'string') {
+        tslint.extends = [tslint.extends, tslintConfigPackage];
+      } else {
+        tslint.extends = tslintConfigPackage;
+      }
+
+      tree.overwrite(tslintPath, JSON.stringify(tslint, null, 2));
     } else {
       context.logger.info(
         `unable to locate tslint file at ${tslintPath}, conflicting styles may exists`
