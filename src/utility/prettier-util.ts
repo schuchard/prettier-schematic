@@ -70,36 +70,3 @@ function wrapAsString(key: any, value: any): boolean {
   );
   return hasStringValue ? `"${value}"` : value;
 }
-
-export function removeConflictingTsLintRules(tsLint: any) {
-  if (!tsLint.rules) {
-    return tsLint;
-  }
-  
-  tsLint.rules = Object.entries(tsLint.rules).reduce((acc: any, [tsKey, tsValue]) => {
-    if (ruleIsIncompatible(tsKey)) {
-      return acc;
-    }
-    acc[tsKey] = tsValue;
-    return acc;
-  }, {});
-
-  return tsLint;
-}
-
-function ruleIsIncompatible(rule: string) {
-  return [
-    'comment-format',
-    'curly',
-    'eofline',
-    'import-spacing',
-    'indent',
-    'max-line-length',
-    'no-trailing-whitespace',
-    'one-line',
-    'quotemark',
-    'semicolon',
-    'typedef-whitespace',
-    'angular-whitespace',
-  ].some((removeable) => rule == removeable);
-}
