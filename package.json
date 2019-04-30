@@ -1,6 +1,6 @@
 {
   "name": "@schuchard/prettier",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "An Angular schematic for adding prettier",
   "scripts": {
     "build": "tsc -p tsconfig.json -w",
