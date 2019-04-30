@@ -9,7 +9,13 @@ A Schematic that adds prettier and a pre-commit hook for formatting staged files
 
 ## Usage 🚀
 
-Install globally
+Run in an Angular CLI project
+
+```bash
+ng add @schuchard/prettier
+```
+
+or install globally
 
 ```shell
 npm install -g @schuchard/prettier
