@@ -21,7 +21,7 @@ or install globally
 npm install -g @schuchard/prettier
 ```
 
-Run in an Angular CLI root directory:
+then in an Angular CLI project:
 
 ```shell
 ng g @schuchard/prettier:add
