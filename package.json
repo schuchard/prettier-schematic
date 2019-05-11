@@ -8,7 +8,6 @@
     "test": "yarn build:clean:launch:test && yarn test:all && yarn clean",
     "test:schematic": "npm run build && jasmine src/**/*_spec.js",
     "test:all": "cd sandbox && run-s lint test e2e build",
-    "test:ci": "cd sandbox && yarn && run-s lint build && cd .. clean",
     "clean": "git checkout HEAD -- sandbox && git clean -f -d sandbox",
     "clean:launch": "run-s clean launch:schematic",
     "launch:schematic": "cd sandbox && ng g @schuchard/prettier:add",
