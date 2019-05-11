@@ -111,10 +111,22 @@ Install dependencies:
 yarn && cd sandbox && yarn
 ```
 
-Link schematic to sandbox app. Schematic commands in the sandbox will use this local repo schematic.
+Test changes to the schematic
 
 ```shell
-yarn link && yarn link:sandbox
+yarn dev
+```
+
+Test changes to the schematic AND run E2E tests in the sandbox
+
+```shell
+yarn test
+```
+
+Reset the sandbox state after running the schematic locally
+
+```shell
+yarn clean
 ```
 
 ### Committing ✅
