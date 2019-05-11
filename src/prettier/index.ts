@@ -184,5 +184,7 @@ function addScripts(options: PrettierOptions) {
 }
 
 function getFileTypes(allAngularFiles: boolean) {
-  return allAngularFiles ? 'js,json,css,md,ts,html,component.html' : 'ts,tsx';
+  // https://prettier.io/docs/en/options.html#parser
+  // https://prettier.io/blog/2018/11/07/1.15.0.html#automatic-parser-inference
+  return allAngularFiles ? 'js,json,css,scss,less,md,ts,html,component.html' : 'ts,tsx';
 }
