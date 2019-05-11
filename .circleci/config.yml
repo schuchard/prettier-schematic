@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: 'circleci/node:10.15.3'
+      - image: 'circleci/node:10.15.3-browsers'
     steps:
       - checkout
       # Download and cache dependencies
@@ -19,4 +19,4 @@ jobs:
             - sandbox/node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       # run tests!
-      - run: yarn test:ci
+      - run: yarn test
