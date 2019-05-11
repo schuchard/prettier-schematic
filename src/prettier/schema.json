@@ -84,7 +84,7 @@
       "type": "boolean",
       "description": "Format all Angular Files",
       "default": true,
-      "x-prompt": "Format all Angular Files {js,json,css,md,ts,html,component.html} > Yes! :)"
+      "x-prompt": "Format all Angular Files {js,json,css,scss,less,md,ts,html,component.html} > Yes! :)"
     }
   },
   "required": [],
