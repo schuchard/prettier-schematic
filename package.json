@@ -9,7 +9,7 @@
     "test:schematic": "npm run build && jasmine src/**/*_spec.js",
     "test:sandbox": "cd sandbox && run-s lint test e2e build",
     "clean": "git checkout HEAD -- sandbox && git clean -f -d sandbox",
-    "launch:schematic": "yarn link:sandbox  && cd sandbox && yarn && ./node_modules/.bin/ng g @schuchard/prettier:add",
+    "launch:schematic": "yarn link:sandbox && cd sandbox && yarn && yarn ng g @schuchard/prettier:add",
     "launch:schematic:noPrompts": "cd sandbox && ./node_modules/.bin/ng g @schuchard/prettier:add --printWidth=100 --tabWidth=2 --semi=true --singleQuote=true --trailingComma=es5 --lintStaged=true --formatAllAngularFiles=true",
     "build:clean:launch": "run-s build:once clean launch:schematic:noPrompts && cd sandbox && yarn prettier",
     "dev": "yarn build:clean:launch",
