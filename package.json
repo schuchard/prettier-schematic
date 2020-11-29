@@ -30,7 +30,7 @@
   "license": "MIT",
   "schematics": "./src/collection.json",
   "engines": {
-    "node": ">=8.11.0"
+    "node": ">=8.11.0 <12"
   },
   "dependencies": {
     "@angular-devkit/core": "^7.0.1",
