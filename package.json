@@ -29,6 +29,9 @@
   "bugs": "https://github.com/schuchard/prettier-schematic/issues",
   "license": "MIT",
   "schematics": "./src/collection.json",
+  "ng-add": {
+    "save": "devDependencies"
+  },
   "engines": {
     "node": ">=8.11.0"
   },
