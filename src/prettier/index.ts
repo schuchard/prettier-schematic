@@ -13,11 +13,7 @@ import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { Observable, of } from 'rxjs';
 import { map, concatMap, filter } from 'rxjs/operators';
 
-import {
-  PrettierOptions,
-  getDefaultOptions,
-  PrettierSettings,
-} from '../utility/prettier-util';
+import { PrettierOptions, getDefaultOptions, PrettierSettings } from '../utility/prettier-util';
 import { addPackageJsonDependency, NodeDependencyType } from '../utility/dependencies';
 import {
   getLatestNodeVersion,
@@ -27,7 +23,7 @@ import {
 } from '../utility/util';
 import { JsonObject } from '@angular-devkit/core';
 
-export default function(options: PrettierOptions): Rule {
+export default function (options: PrettierOptions): Rule {
   return (tree: Tree, context: SchematicContext) => {
     const cliOptions = getDefaultOptions(context, options, new PrettierSettings());
 
@@ -129,9 +125,7 @@ function updateEditorConfig(options: PrettierOptions): Rule {
       if (editorConfigBuffer === null) {
         // unable to read editorconfig
         context.logger.info(
-          `Could not modify .editorconfig at ${editorConfigPath}. Update ${rule} to match tabWidth: ${
-            options.tabWidth
-          }.`
+          `Could not modify .editorconfig at ${editorConfigPath}. Update ${rule} to match tabWidth: ${options.tabWidth}.`
         );
       } else {
         // editorconfig parsed, modify
@@ -165,7 +159,7 @@ function addLintStagedConfig(options: PrettierOptions) {
       });
 
       addPropertyToPackageJson(tree, context, 'lint-staged', {
-        [`*.{${getFileTypes(options.formatAllAngularFiles)}}`]: [prettierCommand, 'git add'],
+        [`*.{${getFileTypes(options.formatAllAngularFiles)}}`]: [prettierCommand],
       });
     }
     return tree;
@@ -177,7 +171,7 @@ function addScripts(options: PrettierOptions) {
     addPropertyToPackageJson(tree, context, 'scripts', {
       // run against all typescript files
       // prettier-ignore
-      prettier: `${prettierCommand} \"**/*.{${getFileTypes(options.formatAllAngularFiles)}}\"`
+      prettier: `${prettierCommand} \"**/*.{${getFileTypes(options.formatAllAngularFiles)}}\"`,
     });
     return tree;
   };
