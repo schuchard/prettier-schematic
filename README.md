@@ -14,7 +14,9 @@ Run in an Angular CLI project
 ng add @schuchard/prettier
 ```
 
-or install globally
+Then you're done. Continue your normal workflow of `git add, commit, push` or the similar workflow with your IDE/editor.
+
+You can optionally install globally
 
 ```shell
 npm install -g @schuchard/prettier
