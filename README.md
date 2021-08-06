@@ -62,13 +62,13 @@ Previous versions of this schematic only formatted Typescript files. That functi
 
 ![format-typescript-files](docs/prettier-ts-sm.png)
 
-## Defaults Prettier options
+## Default Prettier options
 
 ### Angular 7
 
 This schematic takes advantage of CLI [prompts](https://github.com/angular/angular-cli/blob/fb4e8187824fe66e50b42c16f95458e82b4787a8/docs/specifications/schematic-prompts.md) for configuring Prettier options. If you're unsure of a setting, press enter to select the default. You can skip a prompt by passing any of the options when call the schematic.
 
-```ng g @schuchard/prettier:add --printWidth=100```
+`ng g @schuchard/prettier:add --printWidth=100`
 
 ![schematic-cli](docs/prettier-cli-sm.png)
 
@@ -126,6 +126,18 @@ Reset the sandbox state after running the schematic locally
 
 ```shell
 yarn clean
+```
+
+## Updating the Sandbox
+
+1. remove the `/sandbox` directory
+2. `npm i -g @angular/cli`
+3. `ng new sandbox`
+4. update the `package.json`
+
+```
+"build": "ng build --prod --progress=false",
+"test": "ng test --watch=false",
 ```
 
 ## Documentation
