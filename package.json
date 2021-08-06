@@ -24,7 +24,6 @@
     "angular"
   ],
   "main": "src/prettier/index.js",
-  "bin": "src/prettier/index.js",
   "author": "Kevin Schuchard <schuchard.kevin@gmail.com>",
   "bugs": "https://github.com/schuchard/prettier-schematic/issues",
   "license": "MIT",
