@@ -7,7 +7,7 @@
     "build:once": "tsc -p tsconfig.json",
     "test": "yarn run-s build:clean:launch test:sandbox clean",
     "test:schematic": "npm run build && jasmine src/**/*_spec.js",
-    "test:sandbox": "cd sandbox && run-s lint test e2e build",
+    "test:sandbox": "cd sandbox && run-s test build",
     "clean": "git checkout HEAD -- sandbox && git clean -f -d sandbox",
     "launch:schematic": "yarn link:sandbox && cd sandbox && yarn && yarn ng g @schuchard/prettier:add",
     "launch:schematic:noPrompts": "yarn link:sandbox && cd sandbox && yarn && yarn ng g @schuchard/prettier:add --printWidth=100 --tabWidth=2 --semi=true --singleQuote=true --trailingComma=es5 --lintStaged=true --formatAllAngularFiles=true",
